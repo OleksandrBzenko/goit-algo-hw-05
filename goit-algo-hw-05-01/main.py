@@ -1,0 +1,25 @@
+def caching_fibonachi():
+    cache = {}
+    def fibonacci(n):
+        if n <= 0:
+            return 0
+        if n == 1:
+            return 1
+        if n in cache:
+            return cache[n]
+        cache[n] = fibonacci(n - 1) + fibonacci(n - 2)
+        return cache[n]
+    return fibonacci
+fib = caching_fibonachi()
+
+def main():
+    print(fib(10))
+    print(fib(15))
+
+
+
+
+
+
+if __name__ == "__main__":
+    main()
