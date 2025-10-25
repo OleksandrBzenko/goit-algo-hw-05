@@ -3,9 +3,10 @@ from typing import Callable, Generator
 
 
 def generator_numbers(text: str)-> Generator[float, None, None]:
-    numbers = re.findall(r"\d+\.\d+|\d+", text)# Знаходимо всі дійсні числа у тексті
-    for number in numbers:
-        yield float(number)
+    text = f"{text}"
+    pattern = r"(\d+\.\d+)"# Знаходимо всі дійсні числа у тексті
+    for match in re.finditer(pattern, text):
+        yield float(match.group(1))
 
 
 def sum_profit(text: str, func: Callable[[str], Generator[float, None, None]]):

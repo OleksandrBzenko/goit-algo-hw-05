@@ -17,11 +17,13 @@ def input_error(func):
             return "Error: Contact not found."
     return inner
 
+
 @input_error
 def add_contact(args, contacts):
     name, phone = args
     contacts[name] = phone
     return "Contact added."
+
 
 @input_error
 def change_contact(args, contacts):
@@ -29,16 +31,14 @@ def change_contact(args, contacts):
     if name in contacts:
         contacts[name] = phone
         return "Contact updated."
-    else:
-        return "Error: Contact not found."
+
 
 @input_error
 def show_phone(args, contacts):
     name = args[0]
     if name in contacts:
         return f"{name} {contacts[name]}"
-    else:
-        return "Error: Contact not found."
+    
 
 def show_all(contacts):
     if  contacts:
@@ -46,8 +46,7 @@ def show_all(contacts):
         for name, phone in contacts.items():
             result.append(f"{name}: {phone}")
         return "\n".join(result)
-    else:
-        return "No contacts found."
+    
 
 
 
