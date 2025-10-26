@@ -15,6 +15,8 @@ def input_error(func):
             return "Error: Missing required argument(s)."
         except KeyError:
             return "Error: Contact not found."
+        except Exception as e:
+            print(f"An error occured: {e}")
     return inner
 
 
@@ -50,37 +52,35 @@ def show_all(contacts):
 
 
 
-
+@input_error
 def main():
     contacts = {}
     print("Welcome to the assistanst bot!")
     
     while True:
-        try:
-            user_input = input("Enter a command:")
-            command, args = parse_input(user_input)
+        user_input = input("Enter a command:")
+        command, args = parse_input(user_input)
         
-            if command in ["close", "exit"]:
-                print("Good bye!")
-                break
+        if command in ["close", "exit"]:
+            print("Good bye!")
+            break
 
-            elif command == "hello":
-                print("Hello! How can I help you?")
-            elif command == "add":
-                print(add_contact(args, contacts))
-            elif command == "change":
-                print(change_contact(args, contacts))
-            elif command == "phone":
-                print(show_phone(args, contacts))
-            elif command == "all":
-                print(show_all(contacts))
-            elif command == "": 
-                print("Please enter a command.")
-            else:
-                print("Invalid command.")
-        except Exception as e:
-            print(f"An error occured: {e}")
+        elif command == "hello":
+            print("Hello! How can I help you?")
+        elif command == "add":
+            print(add_contact(args, contacts))
+        elif command == "change":
+            print(change_contact(args, contacts))
+        elif command == "phone":
+            print(show_phone(args, contacts))
+        elif command == "all":
+            print(show_all(contacts))
+        elif command == "": 
+            print("Please enter a command.")
+        else:
+            print("Invalid command.")
 
 
 if __name__ == "__main__":
+
     main()
